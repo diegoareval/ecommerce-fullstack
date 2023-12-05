@@ -1,18 +1,38 @@
-import {authFetch, ENV} from '@/utils'
+import { authFetch, ENV } from '@/utils'
 
 export class User {
-    async getMe(){
-     try {
-        const url = `${ENV.API_URL}/${ENV.ENDPOINTS.USERS_ME}`
-       
-        const response = await authFetch(url)
-        const result = response.json()
-        if (response.status != 200) throw result
-        return result
-     } catch (error) {
-        throw error
-     }
+  async getMe() {
+    try {
+      const url = `${ENV.API_URL}/${ENV.ENDPOINTS.USERS_ME}`
+
+      const response = await authFetch(url)
+      const result = response.json()
+      if (response.status != 200) throw result
+      return result
+    } catch (error) {
+      throw error
     }
+  }
+
+  async updateMe(userId, data = {}) {
+    try {
+      const url = `${ENV.API_URL}/${ENV.ENDPOINTS.USERS}/${userId}`
+      const params = {
+         method: 'PUT',
+         headers: {
+            'Content-Type': 'application/json'
+         },
+         body: JSON.stringify(data)
+      }
+
+      const response = await authFetch(url, params)
+      const result = response.json()
+      if (response.status != 200) throw result
+      return result
+    } catch (error) {
+      throw error
+    }
+  }
 }
 
-export const userInstance = new User();
+export const userInstance = new User()
