@@ -1,6 +1,6 @@
 import {Tab} from 'semantic-ui-react'
 import { useRouter } from 'next/router';
-import { Info, Settings } from "@/components/account";
+import { Info, Settings, Address } from "@/components/account";
 import {BasicLayout} from "../../components/layouts";
 import {Separator} from '@/components/shared'
 import {useAuth} from '@/hooks'
@@ -34,7 +34,8 @@ const HomePage = ()=> {
          menuItem: "Mis Direcciones",
          render: ()=> (
             <Tab.Pane attached={false}>
-             <p>Mis direcciones</p>
+             <Address.AddAddress/>
+             <Separator height={80}/>
             </Tab.Pane>
          )
       },
