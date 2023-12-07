@@ -1,9 +1,9 @@
 import { authFetch, ENV } from '@/utils'
 
 export class Address {
-  async getAddress() {
+  async getAddress(userId) {
     try {
-      const url = `${ENV.API_URL}/${ENV.ENDPOINTS.ADDRESSES}`
+      const url = `${ENV.API_URL}/${ENV.ENDPOINTS.ADDRESSES}?filters[user][id][$eq]=${userId}`
 
       const response = await authFetch(url)
       const result = response.json()
@@ -22,7 +22,7 @@ export class Address {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({data}),
       }
 
       const response = await authFetch(url, params)

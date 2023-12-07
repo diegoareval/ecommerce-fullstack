@@ -8,7 +8,7 @@ import classNames from 'classnames';
 
 export const Menu = ({isOpenSearch}) => {
     const [platforms, setPlatforms] = useState(null);
-    const [showSearch, setShowSearch] = useState(true);
+    const [showSearch, setShowSearch] = useState(false);
 
     const openCloseSearch = () => setShowSearch((prevState) => !prevState);
 
@@ -16,7 +16,6 @@ export const Menu = ({isOpenSearch}) => {
         loadData();
     }, [])
 
-    console.log("showSearch", showSearch)
 
      const loadData = async()=> {
        try {
